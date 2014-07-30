@@ -5,7 +5,6 @@ using System.Linq;
 public class SceneDebuggerObserver : Observer
 {
 	public const string TOGGLE_VIEWABLE = "TOGGLE_VIEWABLE";
-	private bool coroutineRunning = false;
 
 	public override void OnNotify( Object sender, EventArguments e )
 	{

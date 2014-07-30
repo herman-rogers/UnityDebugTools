@@ -9,8 +9,10 @@ public enum PauseState
 
 public class SceneStepper : MonoBehaviour {
 
-	public PauseState currentPauseState = PauseState.SCENE_IS_RESUMED;
-	private bool coroutineRunning = false;
+	public static PauseState currentPauseState = PauseState.SCENE_IS_RESUMED;
+	public const string STATE_IS_PAUSED = "STATE_IS_PAUSED";
+	public const string STATE_IS_RESUMED = "STATE_IS_RESUMED";
+    private bool coroutineRunning = false;
 	private const float sceneStepTime = 0.009f;
 
 	void Update ( ) {
@@ -54,12 +56,14 @@ public class SceneStepper : MonoBehaviour {
 	private void ResumeFrame( )
 	{
 		currentPauseState = PauseState.SCENE_IS_RESUMED;
+		Subject.Notify( STATE_IS_RESUMED );
 		Time.timeScale = 1.0f;
 	}
 
 	private void PauseFrame( )
 	{
 		currentPauseState = PauseState.SCENE_IS_PAUSED;
-		Time.timeScale = 0.0f;
+		Subject.Notify( STATE_IS_PAUSED );
+        Time.timeScale = 0.0f;
 	}
 }

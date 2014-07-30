@@ -81,7 +81,6 @@ public class Subject : MonoBehaviour {
     {
         foreach ( var unityObserver in listOfUnityObservers )
         {
-            Debug.Log( unityObserver.name );
             unityObserver.GetComponent< UnityObserver >( ).OnNotify( sender, 
                 new EventArguments( unityEventName, extendedMessage ) );
         }
